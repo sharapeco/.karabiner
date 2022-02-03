@@ -3,23 +3,44 @@ const fs = require('fs')
 
 const dest = path.join(__dirname, '../assets/complex_modifications/fastkana.json')
 
+/**
+ * キーを Karabiner-Elements の設定形式にする
+ * 例："Sa" = "shift + A"
+ * @param {string} c
+ * @returns {Object}
+ */
+function parseKeyDown(c) {
+	const m = c.match(/^([ACMS]+)(.+)$/)
+	const modifier = m ? m[1] : ''
+	const key_code = m ? m[2] : c
+	return {
+		key_code,
+		...(modifier === '' ? {} : {
+			modifiers: [
+				...(/A/.test(modifier) ? ['alt'] : []),
+				...(/C/.test(modifier) ? ['control'] : []),
+				...(/M/.test(modifier) ? ['command'] : []),
+				...(/S/.test(modifier) ? ['shift'] : []),
+			]
+		})
+	}
+}
+
 // name, from, to
 const rules = `
 きゃ	t	g S7
-きゅ	h	g S8
+きゅ	g	g S8
 きょ	b	g S9
 しゃ	x	d S7
-しゅ	r	d S8
+しゅ	d	d S8
 しょ	c	d S9
 ちゃ	q	a S7
-ちゅ	z	a S8
+ちゅ	a	a S8
 ちょ	s	a S9
 にゃ	u	i S7
-にゅ	1	i S8
 にゅ	i	i S8
 にょ	k	i S9
 ひゃ	f	v S7
-ひゅ	2	v S8
 ひゅ	v	v S8
 ひょ	hyphen	v S9
 みゃ	j	n S7
@@ -35,77 +56,88 @@ const rules = `
 	return {
 		name: part[0],
 		from: part[1],
-		to: part[2].split(/ /).map(c => {
-			const m = c.match(/^([ACMS]+)(.+)$/)
-			const modifier = m ? m[1] : ''
-			const key_code = m ? m[2] : c
-			return {
-				key_code,
-				...(modifier === '' ? {} : {
-					modifiers: [
-						...(/A/.test(modifier) ? ['alt'] : []),
-						...(/C/.test(modifier) ? ['control'] : []),
-						...(/M/.test(modifier) ? ['command'] : []),
-						...(/S/.test(modifier) ? ['shift'] : []),
-					]
-				})
-			}
-		})
+		to: part[2].split(/ /).map(parseKeyDown)
 	}
 })
 
-const json = {
+const baseManipulator = {
+	type: 'basic',
+	conditions: [
+		{
+			type: 'input_source_if',
+			input_sources: [
+				{ language: '^ja$' }
+			]
+		}
+	]
+}
+
+const simultaneous_options = {
+	key_down_order: 'strict'
+}
+
+const config = {
 	title: '速かな入力',
 	maintainers: ['sharapeco'],
 	rules: [
 		{
-			description: '速拗音入力 [shift + か] → きゃ',
-			manipulators: rules.map(rule => ({
-				type: 'basic',
-				conditions: [
-					{
-						type: 'input_source_if',
-						input_sources: [
-							{ language: '^ja$' }
-						]
-					}
-				],
-				from: {
-					key_code: rule.from,
-					modifiers: {
-						mandatory: ['shift']
-					}
-				},
-				to: rule.to
-			}))
+			description: '速拗音入力 [shift + か → きゃ]',
+			manipulators: [
+				// 半濁音ルール
+				...rules.filter(rule => /^ひ/.test(rule.name)).map(rule => ({
+					...baseManipulator,
+					from: {
+						simultaneous: [
+							{ key_code: rule.from },
+							{ key_code: 'close_bracket' } // 半濁点
+						],
+						simultaneous_options,
+						modifiers: {
+							mandatory: ['shift']
+						}
+					},
+					to: [
+						rule.to[0],
+						{ key_code: 'close_bracket' }, // 半濁点
+						rule.to[1]
+					]
+				})),
+				// 濁音ルール
+				...rules.map(rule => ({
+					...baseManipulator,
+					from: {
+						simultaneous: [
+							{ key_code: rule.from },
+							{ key_code: 'open_bracket' } // 濁点
+						],
+						simultaneous_options,
+						modifiers: {
+							mandatory: ['shift']
+						}
+					},
+					to: [
+						rule.to[0],
+						{ key_code: 'open_bracket' }, // 濁点
+						rule.to[1]
+					]
+				})),
+				// 清音ルール
+				...rules.map(rule => ({
+					...baseManipulator,
+					from: {
+						key_code: rule.from,
+						modifiers: {
+							mandatory: ['shift']
+						}
+					},
+					to: rule.to
+				}))
+			]
 		}
 	]
-	// rules: rules.map(rule => ({
-	// 	description: rule.name,
-	// 	manipulators: [
-	// 		{
-	// 			type: 'basic',
-	// 			conditions: [
-	// 				{
-	// 					type: 'input_source_if',
-	// 					input_sources: [
-	// 						{ language: '^ja$' }
-	// 					]
-	// 				}
-	// 			],
-	// 			from: {
-	// 				key_code: rule.from,
-	// 				modifiers: {
-	// 					mandatory: ['shift']
-	// 				}
-	// 			},
-	// 			to: rule.to
-	// 		}
-	// 	]
-	// }))
 }
 
-fs.writeFile(dest, JSON.stringify(json, null, 2), (err) => {
+fs.writeFile(dest, JSON.stringify(config, null, 2), (err) => {
 	if (err) {
 		throw err
 	}
