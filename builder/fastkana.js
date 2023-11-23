@@ -49,6 +49,12 @@ const rules = `
 りゃ	o	l S7
 りゅ	l	l S8
 りょ	international1	l S9
+てぃ	w	w Se
+とぅ	r	s S4
+ふぁ	2	2 S3
+ふぃ	y	2 Se
+ふぉ	h	2 S6
+ゔ	open_bracket	4 open_bracket
 `.split(/\n/)
 .filter(s => s.trim() !== '' && s.trim().charAt(0) !== '#')
 .map(line => {
@@ -84,7 +90,7 @@ const config = {
 			description: '速拗音入力 [shift + か → きゃ]',
 			manipulators: [
 				// 半濁音ルール
-				...rules.filter(rule => /^ひ/.test(rule.name)).map(rule => ({
+				...rules.filter(rule => /^[ひ]/.test(rule.name)).map(rule => ({
 					...baseManipulator,
 					from: {
 						simultaneous: [
@@ -103,7 +109,7 @@ const config = {
 					]
 				})),
 				// 濁音ルール
-				...rules.map(rule => ({
+				...rules.filter(rule => /^[きしちてとにひふみり]/.test(rule.name)).map(rule => ({
 					...baseManipulator,
 					from: {
 						simultaneous: [

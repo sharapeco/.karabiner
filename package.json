@@ -1,0 +1,6 @@
+{
+	"name": "sharapeco-karabiner",
+	"scripts": {
+		"build": "node builder/fastkana.js"
+	}
+}

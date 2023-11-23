@@ -1100,6 +1100,231 @@
             }
           ],
           "from": {
+            "simultaneous": [
+              {
+                "key_code": "w"
+              },
+              {
+                "key_code": "open_bracket"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "w"
+            },
+            {
+              "key_code": "open_bracket"
+            },
+            {
+              "key_code": "e",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "r"
+              },
+              {
+                "key_code": "open_bracket"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "s"
+            },
+            {
+              "key_code": "open_bracket"
+            },
+            {
+              "key_code": "4",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "2"
+              },
+              {
+                "key_code": "open_bracket"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "2"
+            },
+            {
+              "key_code": "open_bracket"
+            },
+            {
+              "key_code": "3",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "y"
+              },
+              {
+                "key_code": "open_bracket"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "2"
+            },
+            {
+              "key_code": "open_bracket"
+            },
+            {
+              "key_code": "e",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "h"
+              },
+              {
+                "key_code": "open_bracket"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "2"
+            },
+            {
+              "key_code": "open_bracket"
+            },
+            {
+              "key_code": "6",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
             "key_code": "t",
             "modifiers": {
               "mandatory": [
@@ -1756,6 +1981,195 @@
               "modifiers": [
                 "shift"
               ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "w"
+            },
+            {
+              "key_code": "e",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "r",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "s"
+            },
+            {
+              "key_code": "4",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "2",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "2"
+            },
+            {
+              "key_code": "3",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "2"
+            },
+            {
+              "key_code": "e",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "2"
+            },
+            {
+              "key_code": "6",
+              "modifiers": [
+                "shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "^ja$"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "4"
+            },
+            {
+              "key_code": "open_bracket"
             }
           ]
         }
